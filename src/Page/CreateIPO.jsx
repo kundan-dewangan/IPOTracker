@@ -9,9 +9,9 @@ import {
     ScrollView,
     SafeAreaView,
 } from 'react-native';
-import { colors } from '../Utils/util';
+import { colors, generateRandomNumber } from '../Utils/util';
 
-const CreateIPO = () => {
+const CreateIPO = ({ storeData }) => {
     const [name, setName] = useState('');
     const [gmp, setGmp] = useState('');
     const [profit, setProfit] = useState('');
@@ -65,8 +65,8 @@ const CreateIPO = () => {
 
     const handleAddData = () => {
         if (validateInputs()) {
-            // Perform your data addition logic here
-            Alert.alert('Success', 'Data added successfully');
+            const newData = { name, gmp, profit, fireRating, startDate, lastDate, allotmentDate, listingDate, qty, price, sHNIQty, sHNIPrice, id: generateRandomNumber() };
+            storeData(newData)
         }
     };
 
@@ -80,7 +80,7 @@ const CreateIPO = () => {
                         style={styles.input}
                         onChangeText={(text) => setName(text)}
                         value={name}
-                        borderColor={errors.name && colors.errorDark}
+                        borderColor={errors.name ? colors.errorDark : colors.primaryLight}
                     />
                     {errors.name && <Text style={styles.error}>{errors.name}</Text>}
 
@@ -89,7 +89,7 @@ const CreateIPO = () => {
                         style={styles.input}
                         onChangeText={(text) => setGmp(text)}
                         value={gmp}
-                        borderColor={errors.gmp && colors.errorDark}
+                        borderColor={errors.gmp ? colors.errorDark : colors.primaryLight}
 
                     />
                     {errors.gmp && <Text style={styles.error}>{errors.gmp}</Text>}
@@ -99,7 +99,7 @@ const CreateIPO = () => {
                         style={styles.input}
                         onChangeText={(text) => setProfit(text)}
                         value={profit}
-                        borderColor={errors.profit && colors.errorDark}
+                        borderColor={errors.profit ? colors.errorDark : colors.primaryLight}
 
                     />
                     {errors.profit && <Text style={styles.error}>{errors.profit}</Text>}
@@ -109,7 +109,7 @@ const CreateIPO = () => {
                         style={styles.input}
                         onChangeText={(text) => setFireRating(text)}
                         value={fireRating}
-                        borderColor={errors.fireRating && colors.errorDark}
+                        borderColor={errors.fireRating ? colors.errorDark : colors.primaryLight}
 
                     />
                     {errors.fireRating && (
@@ -128,7 +128,7 @@ const CreateIPO = () => {
                         style={styles.input}
                         onChangeText={(text) => setLastDate(text)}
                         value={lastDate}
-                        borderColor={errors.lastDate && colors.errorDark}
+                        borderColor={errors.lastDate ? colors.errorDark : colors.primaryLight}
 
                     />
                     {errors.lastDate && <Text style={styles.error}>{errors.lastDate}</Text>}
@@ -179,7 +179,7 @@ const CreateIPO = () => {
                         <Text style={styles.error}>{errors.sHNIPrice}</Text>
                     )}
 
-                    <Button title="Add IPO" onPress={handleAddData} />
+                    <Button title="Add IPO" color={colors.primaryDark} onPress={handleAddData} />
                 </View>
             </SafeAreaView>
         </ScrollView>
@@ -194,10 +194,10 @@ const styles = StyleSheet.create({
     },
     title: {
         flex: 1,
-        fontSize:22,
-        fontWeight:'bold',
+        fontSize: 22,
+        fontWeight: 'bold',
         textAlign: 'center',
-        color: colors.blackDark
+        color: colors.primaryDark
 
     },
     form: {
@@ -211,7 +211,7 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 16,
         borderWidth: 1,
-        borderColor: colors.greyLight,
+        borderColor: colors.primaryLight,
         paddingVertical: 8,
         paddingHorizontal: 10,
         marginBottom: 15,

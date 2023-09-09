@@ -15,7 +15,7 @@
     "react": "18.2.0",
     "react-native": "0.72.4",
     "react-native-draggable-flatlist": "^4.0.1",
-    "react-native-table-component": "^1.2.2"
+    "react-native-table-component": "https://github.com/slice312/react-native-table-component.git"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

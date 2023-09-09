@@ -32,3 +32,11 @@ export const padding = {
     eightin: 18,
     twenty: 10,
 }
+
+
+// Generate a random 10-digit number
+export const generateRandomNumber = () =>{
+    const min = 1000000000; // Minimum 10-digit number (inclusive)
+    const max = 9999999999; // Maximum 10-digit number (inclusive)
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
