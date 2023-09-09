@@ -12,11 +12,11 @@ export const colors = {
     greyLight: "#d1ccc0",
     greyDark: "#84817a",
     infoLight: "#9980FA",
-    infoDark: "#5758BB",   
+    infoDark: "#5758BB",
     whiteLight: "#ffffff",
-    whiteDark: "#f1f2f6",   
+    whiteDark: "#f1f2f6",
     blackLight: "#000000",
-    blackDark: "#2f3542",   
+    blackDark: "#2f3542",
 }
 
 export const padding = {
@@ -35,8 +35,11 @@ export const padding = {
 
 
 // Generate a random 10-digit number
-export const generateRandomNumber = () =>{
+export const generateRandomNumber = () => {
     const min = 1000000000; // Minimum 10-digit number (inclusive)
     const max = 9999999999; // Maximum 10-digit number (inclusive)
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+}
+
+
+export const columnHeaders = ['Name', 'GMP', 'Profit', 'Fire Rating', 'Start Date', 'Last Date', 'Allotment Date', 'Listing Date', 'Quantity', 'Price', 'S-HNI Qty', 'S-HNI Price', 'Id']

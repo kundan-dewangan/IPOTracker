@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { colors, generateRandomNumber } from '../Utils/util';
 
-const CreateIPO = ({ storeData }) => {
+const CreateIPO = ({ storeData, setIsCreated }) => {
     const [name, setName] = useState('');
     const [gmp, setGmp] = useState('');
     const [profit, setProfit] = useState('');
@@ -57,6 +57,9 @@ const CreateIPO = ({ storeData }) => {
         if (!lastDate.trim()) {
             newErrors.lastDate = 'Last Date is required';
         }
+        if (!allotmentDate.trim()) {
+            newErrors.allotmentDate = 'Allotment Date is required';
+        }
 
         setErrors(newErrors);
 
@@ -65,7 +68,7 @@ const CreateIPO = ({ storeData }) => {
 
     const handleAddData = () => {
         if (validateInputs()) {
-            const newData = { name, gmp, profit, fireRating, startDate, lastDate, allotmentDate, listingDate, qty, price, sHNIQty, sHNIPrice, id: generateRandomNumber() };
+            const newData = { name, gmp, profit, fireRating, startDate, lastDate, allotmentDate, listingDate, qty, price, sHNIQty, sHNIPrice, id: generateRandomNumber(), };
             storeData(newData)
         }
     };
@@ -73,6 +76,7 @@ const CreateIPO = ({ storeData }) => {
     return (
         <ScrollView contentContainerStyle={styles.container} >
             <SafeAreaView>
+                <Text style={styles.goBack} onPress={()=> setIsCreated(false)}>Go Back</Text>
                 <Text style={styles.title}>Add IPO</Text>
                 <View style={styles.form}>
                     <Text style={styles.label}>Name</Text>
@@ -129,8 +133,8 @@ const CreateIPO = ({ storeData }) => {
                         onChangeText={(text) => setLastDate(text)}
                         value={lastDate}
                         borderColor={errors.lastDate ? colors.errorDark : colors.primaryLight}
-
-                    />
+                        
+                        />
                     {errors.lastDate && <Text style={styles.error}>{errors.lastDate}</Text>}
 
                     <Text style={styles.label}>Allotment Date (dd-mm-yyyy)</Text>
@@ -138,6 +142,7 @@ const CreateIPO = ({ storeData }) => {
                         style={styles.input}
                         onChangeText={(text) => setAllotmentDate(text)}
                         value={allotmentDate}
+                        borderColor={errors.allotmentDate ? colors.errorDark : colors.primaryLight}
                     />
 
                     <Text style={styles.label}>Listing Date (dd-mm-yyyy)</Text>
@@ -199,6 +204,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: colors.primaryDark
 
+    },
+    goBack:{
+        color: colors.secondaryDark,
+        marginBottom: 10
     },
     form: {
         width: '100%',

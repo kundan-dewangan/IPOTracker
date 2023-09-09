@@ -15,7 +15,9 @@
     "react": "18.2.0",
     "react-native": "0.72.4",
     "react-native-draggable-flatlist": "^4.0.1",
-    "react-native-table-component": "https://github.com/slice312/react-native-table-component.git"
+    "react-native-orientation-locker": "^1.5.0",
+    "react-native-table-component": "https://github.com/slice312/react-native-table-component.git",
+    "react-native-vector-icons": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
